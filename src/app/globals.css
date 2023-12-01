@@ -1,0 +1,64 @@
+main {
+    /* height: 100vh; */
+    /* width: 100vw; */
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+}
+
+#defaultCanvas1 {
+    display: none !important;
+}
+
+.controls {
+    width: max-content !important;
+}
+
+.hue-select {
+    width: max-content !important;
+}
+
+.hue-info {
+    width: 800px;
+}
+
+.bg-mygreen {
+    background-color: #c6f4bd !important;
+}
+
+.legend-cell-green {
+    background-color: green !important;
+    width: 20px;
+    height: 20px;
+}
+
+.legend-cell-red {
+    background-color: red !important;
+    width: 20px;
+    height: 20px;
+}
+
+.legend-cell-blue {
+    background-color: blue !important;
+    width: 20px;
+    height: 20px;
+}
+
+.info-container {
+    width: calc(100vw - min(100vw, 100vh) - 100px) !important;
+}
+
+.controls {
+    overflow-y: scroll !important;
+    height: 90vh !important;
+    padding-right: 50px;
+}
+
+@media screen and (max-width:1300px) {
+    .controls {
+        padding-right: 0px;
+        height: max-content !important;
+    }
+    .info-container{
+        width: 100vw !important;
+    }
+}
