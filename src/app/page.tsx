@@ -35,7 +35,7 @@ export default function Home() {
         if (!context) return;
 
         Maze.renderGrid(context, side / divisions, side / divisions);
-    }, [newGrid, divisions, obs]);
+    }, [newGrid, divisions, obs, Maze, side]);
 
     // update obs when divisions change
     useEffect(() => {
@@ -69,7 +69,7 @@ export default function Home() {
                             <select name="hueristic" id="" className='form-select hue-select' value={hueristic} onChange={(e) => { setHueristic(Number(e.target.value)) }} >
                                 <option value={0}>Eucledian</option>
                                 <option value={1}>Manhattan</option>
-                                <option value={2}>Act like Dijkstra's </option>
+                                <option value={2}>Act like Dijkstra&#39;s </option>
                             </select>
                         </div>
                     </div>
@@ -115,10 +115,10 @@ export default function Home() {
                             </svg>
                             <h4 className='mb-0 fw-semibold'>A* Algorithm</h4>
                         </div>
-                        <p className='text-muted'>A* is a smart and efficient algorithm used to find the shortest path from one point to another in a maze or graph. Imagine you're exploring a maze, and you want to reach a specific destination. A* helps you figure out the best way to get there by considering both the distance you've already traveled and an estimate of how much more distance you have to cover.
+                        <p className='text-muted'>A* is a smart and efficient algorithm used to find the shortest path from one point to another in a maze or graph. Imagine you&#39;re exploring a maze, and you want to reach a specific destination. A* helps you figure out the best way to get there by considering both the distance you&#39;ve already traveled and an estimate of how much more distance you have to cover.
                             <br />
                             <br />
-                            For nerds<strong> (LIKE ME)</strong> A* is an slight modification to Dijkstra's Algorithm that uses heuristics to cause directional search to avoid searching in redundant directions. </p>
+                            For nerds<strong> (LIKE ME)</strong> A* is an slight modification to Dijkstra&#39;s Algorithm that uses heuristics to cause directional search to avoid searching in redundant directions. </p>
                     </div>
 
                     {/* Hueristic info container*/}
