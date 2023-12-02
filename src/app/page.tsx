@@ -6,14 +6,13 @@ import Astar from '@/Core/A_star';
 
 export default function Home() {
 
-    //  initialize the grid 
-    let side = Math.min(window.innerWidth, window.innerHeight) - (Math.min(window.innerWidth, window.innerHeight) / 10);
-
     // rows, cols and obstacles and hueristic
     const [divisions, setDivions] = useState<number>(50);
     const [obs, setObs] = useState<number>(1200);
     const [hueristic, setHueristic] = useState<number>(0);
     const [newGrid, setNewGrid] = useState<boolean>(false);
+    const [side, setSide] = useState<number>(100);
+    const [steps, setSteps] = useState<number>(0);
 
     // Init maze
     const Maze = useMemo(() => new Grid(divisions, divisions, obs), [divisions, obs]);
@@ -26,6 +25,11 @@ export default function Home() {
         Maze.genGrid();
         setNewGrid(!newGrid);
     }
+
+    // mount the current width and height
+    useEffect(() => {
+        setSide(Math.min(window.innerWidth, window.innerHeight) - (Math.min(window.innerWidth, window.innerHeight) / 10))
+    }, []);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -46,19 +50,19 @@ export default function Home() {
         <main className='p-3'>
             <div className="d-flex flex-row flex-wrap gap-5">
 
-                <div>
-                    <canvas id="grid-canvas" ref={canvasRef} width={side} height={side} ></canvas>
-                </div>
+                <div><canvas id="grid-canvas" ref={canvasRef} width={side} height={side} ></canvas></div>
 
                 <div className="d-flex flex-column gap-3 controls">
 
                     <h1 className='fw-semibold'>A* Pathfinding</h1>
 
-                    <div className="d-flex flex-row gap-4 mt-4" style={{ height: "min-content" }}>
+                    <h5 className='mt-2 mb-0'>Controls:</h5>
+                    {/* Buttons */}
+                    <div className="d-flex flex-row gap-4" style={{ height: "min-content" }}>
                         <button className='btn btn-outline-primary' onClick={drawMaze}>Generate new grid</button>
 
                         <button className='btn btn-outline-success' onClick={() => {
-                            Astar(Maze, setNewGrid, divisions, divisions, Maze.grid[0][0], Maze.grid[divisions - 1][divisions - 1], hueristic);
+                            Astar(Maze, setNewGrid, divisions, divisions, Maze.grid[0][0], Maze.grid[divisions - 1][divisions - 1], hueristic, setSteps);
                         }}>Start A*</button>
                     </div>
 
@@ -87,8 +91,12 @@ export default function Home() {
                         </div>
                     </div>
 
+                    <div className="d-flex flex-row gap-4" style={{ height: "min-content" }}>
+                        <p> Distance: {steps} Cells</p>
+                    </div>
+
                     {/* Legend */}
-                    <div className="d-flex flex-column gap-1 my-4" style={{ height: "min-content" }}>
+                    <div className="d-flex flex-column gap-1 my-2" style={{ height: "min-content" }}>
                         <h5>Legend:</h5>
                         <div className="d-flex flex-row gap-4">
                             <div className="d-flex flex-row gap-1 align-items-center">

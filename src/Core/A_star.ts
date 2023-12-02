@@ -2,22 +2,23 @@ import Cell from "./Cell";
 import Grid from "./Grid";
 import { eucledianDistance, manHattonDistance, actLikeDijkstra } from "./Heuristics";
 
-export default function Astar(Maze: Grid, setNewGrid: React.Dispatch<React.SetStateAction<boolean>>, cols: number, rows: number, start: Cell, end: Cell, heuristic: number) {
+export default function Astar(Maze: Grid, setNewGrid: React.Dispatch<React.SetStateAction<boolean>>, cols: number, rows: number, start: Cell, end: Cell, heuristic: number, setSteps: React.Dispatch<React.SetStateAction<number>>) {
 
     // Reset the grid
     Maze.resetGrid();
 
+    setSteps(0);
+
     // Inital data structures
     let openSet: Cell[] = [start];
     let closedSet: Cell[] = [];
-    let path: Cell[] = [];
 
     // creating a 2-d array to track elements for O(1) search
     let inClosedSet: boolean[][] = new Array(cols).fill([]).map(() => new Array(rows).fill(false));
     let inOpenSet: boolean[][] = new Array(cols).fill([]).map(() => new Array(rows).fill(false));
 
     // select hueuristic function
-    function h(a: Cell, b: Cell) { 
+    function h(a: Cell, b: Cell) {
         switch (heuristic) {
             case 0:
                 return eucledianDistance(a, b);
@@ -68,10 +69,13 @@ export default function Astar(Maze: Grid, setNewGrid: React.Dispatch<React.SetSt
                     temp = temp.previous;
                 }
 
+                start.color = 'blue';
+
                 // Update React state to trigger a re-render
                 setNewGrid((prev) => !prev);
 
                 if (current === end) {
+                    setSteps(tempPath.length);
                     return;
                 }
 
