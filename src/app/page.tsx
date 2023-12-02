@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Grid from '@/Core/Grid';
 import Astar from '@/Core/A_star';
+import Link from 'next/link';
 
 
 export default function Home() {
@@ -148,6 +149,9 @@ export default function Home() {
 
                 </div>
             </div>
+            <h5 className='text-center mt-4'>
+                Source code <Link target='_blank' href="https://github.com/MR-DHRUV/A-Star-Pathfinding">here</Link> <span className='text-danger'>❤</span>
+            </h5>
         </main>
     );
 }
