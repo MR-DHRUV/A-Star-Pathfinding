@@ -1,7 +1,11 @@
 # A* Star Pathfinding
 
-This project brings the A* algorithm to life through visual simulations, helping you see how it finds the shortest path in a graph or grid. 
+This project provides a user-friendly way to visualize the A* pathfinding algorithm. It simulates the algorithmic exploration of search space in a grid.
 
+One can customize the size of the grid and the number of obstacles, and choose different heuristic functions to see
+how they affect the efficiency and adaptability of the A* algorithm in navigating diverse environments.
+
+![image](./pathfinding_demo.png)
 ## Getting Started
 
 1. Clone the repository: `git clone [repo-link]`
